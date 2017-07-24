@@ -1,0 +1,33 @@
+# First we should take the variables send from previusly scrapping algorithm
+# We give asign each of the variables in another set of variables
+
+x= input("prob. de que gane el local: ")
+y= input("prob. empatar: ")
+z= input("prob. de que gane el visitante:" )
+capital = input("Capital para apostar: ")
+# to simplify operation we build a list as a matrix with the numbers
+P_matrix = [x ,y ,z]
+
+# Then we make the operations for bet method, in this case the method used is surebet
+
+Inverse_sum = 1/P_matrix[0] + 1/P_matrix[1] + 1/P_matrix[2]
+bet = False
+
+# Conditional that indicates us if we should bet
+if Inverse_sum < 1:
+    bet = True
+else:
+    pass
+# in this conditional it shows the bet procedure
+if bet == True:
+    apuesta_local= round((x**(-1))*100,2)
+    apuesta_empate= round((y**(-1))*100,2)
+    apuesta_visitante = round((z**(-1))*100,2)
+    posibles_ganancias =  round((1+((x**(-1)) + (y**(-1)) + (z**(-1))))*100)
+    print "Apuesta a local: %s " % apuesta_local
+    print "Apuesta a empate: %s " % apuesta_empate
+    print "Apuesta a visitante: %s" % apuesta_visitante
+    print "Ganacias posibles: %s " % posibles_ganancias
+
+else:
+    pass
