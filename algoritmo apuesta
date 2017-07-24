@@ -10,7 +10,8 @@ P_matrix = [x ,y ,z]
 
 # Then we make the operations for bet method, in this case the method used is surebet
 
-Inverse_sum = 1/P_matrix[0] + 1/P_matrix[1] + 1/P_matrix[2]
+Inverse_sum = (P_matrix[0])**(-1)+ (1/P_matrix[1])**(-1) + (1/P_matrix[2])**(-1)
+print Inverse_sum
 bet = False
 
 # Conditional that indicates us if we should bet
