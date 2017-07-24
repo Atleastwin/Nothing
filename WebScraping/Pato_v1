@@ -1,0 +1,56 @@
+# Autor: Pablo Díaz
+# Haciendo pruebas con BeautifulSoup y requests
+
+# Importamos las librerias
+
+from bs4 import BeautifulSoup
+#importamos librerias
+import requests
+import time
+import os
+# Creamos el Bucle infinito
+
+while (True):
+    # Capturamos la url
+    url = "https://www.inkabet.pe/es-ES/sportsbook"
+
+    # Capturamos el hml de la pagina web y creamos un objeto Response
+    r = requests.get(url)
+    data = r.text
+       # Creamos el objeto soup y le pasamos lo capturado con request
+    soup = BeautifulSoup(data, 'html.parser')
+
+    # Fecha de juego center date_time
+    fecha = soup.find_all('td', class_="center date_time")
+
+    # Buscamos el div para sacar los grados
+    eventos = soup.find_all('td', class_="event")
+
+    # Buscamos el div para sacar la sensacion termica
+    estadisticas = soup.find_all('td', class_=("center outcome "))
+    i=0
+    j=0
+    # Con [0] saco el primer elemento y con [1] el segundo
+    while (eventos[i]!="\n"or eventos[i]!="\r"):
+        #Separamos la linea
+        print ("-------------------------------------------------------------")
+        #Numero de evento
+        print("Evento Número: "+str(i+1))
+        #Fecha
+        print(fecha[i].text)
+        #Nombre del evento
+        print(eventos[i].text)
+        #Cuota 1
+        print("1: " + estadisticas[j].text)
+        #Couta X
+        print("X :" + estadisticas[j+1].text)
+        #Cuota 2
+        print("2 :" + estadisticas[j+2].text)
+        i+=1
+        j+=3
+    # Tiempo en segundos para ejecutarse nuevamente
+
+    time.sleep(15)
+
+    # Boramos los datos viejos, para Windows es "cls"
+    os.system('cls')
